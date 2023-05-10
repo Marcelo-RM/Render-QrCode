@@ -8,7 +8,7 @@ namespace render_qrcode
 		public static Bitmap GenerateImage(string content)
 		{
 			var qrGenerator = new QRCodeGenerator();
-			var qrCodeData = qrGenerator.CreateQrCode(content, QRCodeGenerator.ECCLevel.Q);
+			var qrCodeData = qrGenerator.CreateQrCode(content, QRCodeGenerator.ECCLevel.L);
 			var qrCode = new QRCode(qrCodeData);
 			var qrCodeImage = qrCode.GetGraphic(20);
 
@@ -26,7 +26,7 @@ namespace render_qrcode
 
 				byte[] imageBytes = memoryStream.ToArray();
 
-				imageSource = $"data:image/png;base61,{Convert.ToBase64String(imageBytes)}";
+				imageSource = $"data:image/png;base64,{Convert.ToBase64String(imageBytes)}";
 			}
 
 			return imageSource;
